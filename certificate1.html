@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Participants Record</title>
+<style>
+body { 
+  font-family: Arial, sans-serif; 
+  background: #f4faff; 
+  margin: 0; 
+  padding: 0; 
+  text-align: center;
+}
+h2 { 
+  margin: 20px 0; 
+  color: #004080;
+}
+table { 
+  margin: 20px auto; 
+  border-collapse: collapse; 
+  width: 80%; 
+}
+th, td { 
+  border: 1px solid #ccc; 
+  padding: 10px; 
+}
+th { 
+  background: #e0f0ff; 
+}
+button { 
+  padding: 10px 20px; 
+  margin: 20px; 
+  background: #1e90ff; 
+  color: white; 
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer;
+}
+button:hover { 
+  background: #00bfff;
+}
+</style>
+</head>
+<body>
+<h2>Participants Record</h2>
+<table>
+  <thead>
+    <tr><th>S.No</th><th>Name</th><th>Department</th><th>Score</th></tr>
+  </thead>
+  <tbody id="participantsBody"></tbody>
+</table>
+<button onclick="goBack()">Back</button>
+
+<script>
+let participants = JSON.parse(localStorage.getItem("participants")) || [];
+let tbody = document.getElementById("participantsBody");
+
+// Populate table with serial numbers
+participants.forEach((p, index) => {
+  let row = document.createElement("tr");
+  row.innerHTML = `<td>${index + 1}</td><td>${p.name}</td><td>${p.dept}</td><td>${p.score}%</td>`;
+  tbody.appendChild(row);
+});
+
+// Go back to certificate or quiz page
+function goBack() {
+  window.history.back();
+}
+</script>
+</body>
+</html>
